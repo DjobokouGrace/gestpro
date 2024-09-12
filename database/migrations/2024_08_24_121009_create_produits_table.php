@@ -22,7 +22,8 @@ return new class extends Migration
         //Ici nous activons la clé étrangère dans produit. C'est-à-dire qu'une
         //contrainte d'intégrité est soulevée chaque fois qu'on veut toucher un produit 
         //appartenant à une categorie
-        Schema::enableForeignKeyConstrains();
+        Schema::enableForeignKeyConstraints();
+        
     }
 
     /**

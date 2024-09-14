@@ -81,7 +81,7 @@ class ProduitController extends Controller
                 ]);
                 $findidcate = Categorie::find($validation['categorie_id']);
                 if($findidcate){
-                    $enter = $findidcate->update([
+                    $enter = $findproduit->update([
                         "nom_produit" => $validation['nom_produit'],
                         "description_produit" => $validation['description_produit'],
                         "prix_produit" => $validation['prix_produit'],
@@ -91,7 +91,7 @@ class ProduitController extends Controller
                     return response([
                         "code" =>200,
                         "message" => "Produit ".$prod." modifié avec succès !",
-                        "data" => $enter
+                        "data" => $findproduit
                     ], 200);
                 }else{
                 

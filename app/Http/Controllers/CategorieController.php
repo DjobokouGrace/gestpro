@@ -70,7 +70,7 @@ class CategorieController extends Controller
             return response([
                 "code" => 200,
                 "message" => "Categorie ".$cate." mise à jour ! Bravo !",
-                "data" => $cateup
+                "data" => $findid
             ], 200);
 
         }else {

@@ -30,7 +30,7 @@ Route::post('/mine/', [ApiController::class, 'Mine']);
 //protected routes
 Route::group(['middleware'=>['auth:sanctum']],function(){ 
 Route::get('/listcate', [CategorieController::class, 'Listcate']);
-Route::post('/creationcategorie', [CategorieController::class, 'Createcate']);
+Route::post('/createcate', [CategorieController::class, 'Createcate']);
 
 Route::post('/createprod', [ProduitController::class, 'Createprod']);
 

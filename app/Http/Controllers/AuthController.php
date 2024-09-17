@@ -51,12 +51,12 @@ class AuthController extends Controller
                     'description' => 'identifiants incorrects'
                 ], 403);
             }
-    
+            
             //return user & token in response
             return response([
                 'code'=>200,
                 'user' =>auth()->user(),
-                'token' => auth()->user()->createToken('secret')->plainTextToken
+                'token' => $request->createToken('secret')->plainTextToken
             ], 200);
        }
     }

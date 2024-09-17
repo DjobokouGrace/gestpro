@@ -56,7 +56,7 @@ class AuthController extends Controller
             return response([
                 'code'=>200,
                 'user' =>auth()->user(),
-                'token' => $request->createToken('secret')->plainTextToken
+                'token' => auth()->user()->createToken('secret')->plainTextToken
             ], 200);
        }
     }

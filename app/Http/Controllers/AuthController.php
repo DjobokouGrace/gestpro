@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Laravel\Sanctum\HasApiTokens;
 
 class AuthController extends Controller
 {
@@ -51,11 +50,11 @@ class AuthController extends Controller
                     'description' => 'identifiants incorrects'
                 ], 403);
             }
-            
-            //return user & token in response
+            $user = auth()->user();
+
             return response([
                 'code'=>200,
-                'user' =>auth()->user(),
+                'user' =>$user,
                 'token' => auth()->user()->createToken('secret')->plainTextToken
             ], 200);
        }

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class ProduitController extends Controller
 {
+    //api
     public function Createprod(Request $request){
         $validation = $request -> validate([
             "nom_produit" => " required",
@@ -38,6 +39,43 @@ class ProduitController extends Controller
         }
         
     }
+    //web 
+    public function store(Request $request){
+        $validation = $request -> validate([
+            "nom_produit" => " required",
+            "description_produit" => "required",
+            "prix_produit" => "required",
+            "categorie_id" => "required",
+        ]);
+
+        $findidcate = Categorie::find($validation['categorie_id']);
+        if($findidcate){
+            $enter = Produit::create([
+                "nom_produit" => $validation['nom_produit'],
+                "description_produit" => $validation['description_produit'],
+                "prix_produit" => $validation['prix_produit'],
+                "categorie_id" => $validation['categorie_id']
+            ]);
+    
+                   // Redirection vers la page d'affichage du produit créé
+            return redirect()->route('products.show', ['id' => $enter->id])
+            ->with('success', 'Produit créé avec succès !');
+        }else {
+            return view('list_product');
+        }
+        
+    }
+
+    // Méthode pour afficher le produit créé
+    public function show($id)
+    {
+        // Récupération du produit par son ID
+        $product = Produit::findOrFail($id);
+
+        // Affichage de la vue avec les détails du produit
+        return view('products.show', compact('product'));
+    }
+
 
     public function Listprod(){
         $list= Produit::latest()->take(1)->get();
@@ -47,6 +85,13 @@ class ProduitController extends Controller
             "message" => "Voici la liste des produits",
             "data" => $list
         ], 200);
+      
+    }
+    //prod
+    public function Listproduct(){
+        $list= Produit::all();
+
+        return view('listproduct', $list);
       
     }
 
